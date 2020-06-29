@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <Search v-on:searchList="searchList" v-on:addList="addList"></Search>
+    <StoreList v-bind:store-list="storeList"></StoreList>
   </div>
 </template>
 
 <script>
 import Search from "./components/search";
 import AddInput from "./components/addList";
+import StoreList from "./components/storeList";
 
 export default {
   data() {
@@ -22,7 +24,8 @@ export default {
     };
   },
   components: {
-    Search: Search
+    Search: Search,
+    StoreList: StoreList
   },
   methods: {
     searchList(condition, value) {

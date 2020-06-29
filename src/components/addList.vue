@@ -88,6 +88,7 @@ li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-right: 3px solid #ecf0f1;
 }
 .label-wrapper {
   text-align: center;
