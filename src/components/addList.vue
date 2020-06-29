@@ -40,13 +40,17 @@ export default {
   },
   methods: {
     handleAddList() {
-      const newList = {
-        name: this.nameInput,
-        business: this.businessInput,
-        tel: this.telInput
-      };
-      this.$emit("handleAddList", newList);
-      this.clearValue();
+      if (this.nameInput !== "") {
+        const newList = {
+          name: this.nameInput,
+          business: this.businessInput,
+          tel: this.telInput
+        };
+        this.$emit("handleAddList", newList);
+        this.clearValue();
+      } else {
+        alert("가맹점명을 입력하세요.");
+      }
     },
     clearValue() {
       this.nameInput = "";

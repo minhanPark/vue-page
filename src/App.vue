@@ -18,7 +18,6 @@ export default {
       ],
       storeList: [],
       nextId: 4, // 추가되었을 때 적용되어야할 id를 나타냄
-      inputValue: "",
       selectedStore: {}
     };
   },
