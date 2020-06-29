@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <Search v-on:searchList="searchList"></Search>
+    <Search v-on:searchList="searchList" v-on:addList="addList"></Search>
   </div>
 </template>
 
 <script>
 import Search from "./components/search";
+import AddInput from "./components/addList";
 
 export default {
   data() {
@@ -28,10 +29,18 @@ export default {
     searchList(condition, value) {
       this.storeList = this.stores.filter(store => store[condition] === value);
       console.log(this.storeList);
+    },
+    addList(value) {
+      this.stores.push({ id: this.nextId, ...value });
+      this.nextId += 1;
     }
   }
 };
 </script>
 
 <style>
+body {
+  background-color: white;
+  margin: 0;
+}
 </style>
