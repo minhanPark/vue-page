@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <Search v-on:searchList="searchList" v-on:addList="addList"></Search>
-    <StoreList v-bind:store-list="storeList"></StoreList>
+    <StoreList v-bind:store-list="storeList" v-on:selectList="selectList"></StoreList>
+    <SelectedList v-bind="selectedStore" v-on:updateSelectedList="updateSelectedList"></SelectedList>
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 import Search from "./components/search";
 import AddInput from "./components/addList";
 import StoreList from "./components/storeList";
+import SelectedList from "./components/selectedList";
 
 export default {
   data() {
@@ -25,16 +27,31 @@ export default {
   },
   components: {
     Search: Search,
-    StoreList: StoreList
+    StoreList: StoreList,
+    SelectedList: SelectedList
   },
   methods: {
     searchList(condition, value) {
+      this.clearSelectedList();
       this.storeList = this.stores.filter(store => store[condition] === value);
       console.log(this.storeList);
     },
     addList(value) {
+      this.clearSelectedList();
       this.stores.push({ id: this.nextId, ...value });
       this.nextId += 1;
+    },
+    selectList(id) {
+      console.log("clicked");
+      this.selectedStore = this.storeList.filter(store => store.id === id)[0];
+      console.log(this.selectedStore);
+    },
+    clearSelectedList() {
+      this.selectedStore = {};
+    },
+    updateSelectedList(value) {
+      const index = this.stores.findIndex(store => store.id == value.id);
+      return this.stores.splice(index, 1, value);
     }
   }
 };

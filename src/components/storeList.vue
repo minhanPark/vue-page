@@ -11,7 +11,7 @@
       <tr>
         <td colspan="4" v-if="storeList.length === 0">No data to display</td>
       </tr>
-      <tr v-for="list in storeList" v-bind:key="list.id">
+      <tr v-for="list in storeList" v-bind:key="list.id" v-on:click="handleClick(list.id)">
         <td>{{list.id}}</td>
         <td>{{list.name}}</td>
         <td>{{list.business}}</td>
@@ -25,7 +25,12 @@
 import Vue from "vue";
 
 export default {
-  props: ["storeList"]
+  props: ["storeList"],
+  methods: {
+    handleClick(id) {
+      this.$emit("selectList", id);
+    }
+  }
 };
 </script>
 
