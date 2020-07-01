@@ -2,7 +2,7 @@
   <div id="app">
     <Search v-on:searchList="searchList" v-on:addList="addList"></Search>
     <StoreList v-bind:store-list="storeList" v-on:selectList="selectList"></StoreList>
-    <SelectedList v-bind="selectedStore" v-on:updateSelectedList="updateSelectedList"></SelectedList>
+    <SelectedList v-bind:selected-store="selectedStore"></SelectedList>
   </div>
 </template>
 
@@ -16,9 +16,30 @@ export default {
   data() {
     return {
       stores: [
-        { id: 1, name: "옵타움플랫폼", business: "법인", tel: "0517777777" },
-        { id: 2, name: "강가네국밥", business: "개인", tel: "0511234567" },
-        { id: 3, name: "법인회사예시", business: "법인", tel: "0513456789" }
+        {
+          id: 1,
+          name: "옵타움플랫폼",
+          business: "법인",
+          tel: "0517777777",
+          fax: "0517777777",
+          수수료율: "0.1"
+        },
+        {
+          id: 2,
+          name: "강가네국밥",
+          business: "개인",
+          tel: "0511234567",
+          fax: "0511234567",
+          수수료율: "0.08"
+        },
+        {
+          id: 3,
+          name: "법인회사예시",
+          business: "법인",
+          tel: "0513456789",
+          fax: "0513456789",
+          수수료율: "0.1"
+        }
       ],
       storeList: [],
       nextId: 4, // 추가되었을 때 적용되어야할 id를 나타냄
@@ -48,11 +69,12 @@ export default {
     },
     clearSelectedList() {
       this.selectedStore = {};
-    },
-    updateSelectedList(value) {
-      const index = this.stores.findIndex(store => store.id == value.id);
-      return this.stores.splice(index, 1, value);
     }
+    // 추가하는 메소드
+    // updateSelectedList(value) {
+    //   const index = this.stores.findIndex(store => store.id == value.id);
+    //   return this.stores.splice(index, 1, value);
+    // }
   }
 };
 </script>
